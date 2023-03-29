@@ -1,17 +1,20 @@
-import ListGroup from "./components/ListGroup";
+import { useState } from "react";
+import Alert from "./components/Alert";
+import Button from "./components/Button";
 
 function App() {
-  let items = ["Sofia", "Kyiv", "Copenhagen", "Bratislava"];
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  };
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={handleSelectItem}
-      />
+      <Button onClick={() => setShowAlert(!showAlert)} color="primary">
+        show alert
+      </Button>
+      {showAlert && (
+        <Alert>
+          <strong>Holy guacamole!</strong> You should check in on some of those
+          fields below.
+        </Alert>
+      )}
     </div>
   );
 }
